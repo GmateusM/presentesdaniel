@@ -34,10 +34,13 @@ export const GiftCard = ({ gift, onReserve, isReserved, reservedBy }: GiftCardPr
 
   return (
     <div
-      className="bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl animate-fade-up"
+      className="relative group bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl animate-fade-up border-2 border-transparent hover:border-gold/30"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
+      {/* Efeito de brilho nos cantos */}
+      <div className="absolute inset-0 bg-gradient-to-r from-gold/0 via-gold/10 to-gold/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      
       <div className="relative overflow-hidden aspect-square">
         <img
           src={gift.imageUrl}
@@ -46,19 +49,34 @@ export const GiftCard = ({ gift, onReserve, isReserved, reservedBy }: GiftCardPr
             isHovered ? "scale-110" : "scale-100"
           }`}
         />
+        {/* Overlay dourado sutil */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
       </div>
-      <div className="p-6">
+      
+      <div className="p-6 relative">
+        {/* Decoração superior */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+        
         <h3 className="font-playfair text-xl mb-4 text-gray-800">{gift.name}</h3>
+        
         {isReserved ? (
-          <p className="text-sm text-gray-500 mb-4">Reservado por {reservedBy}</p>
+          <div className="text-center">
+            <p className="text-sm text-gray-500 mb-4">Reservado por {reservedBy}</p>
+            <div className="w-16 h-px mx-auto bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+          </div>
         ) : (
           <Button
             onClick={handleReserve}
-            className="w-full bg-navy hover:bg-navy-light transition-colors"
+            className="w-full bg-gold hover:bg-gold-dark text-gray-900 font-medium transition-all duration-300 
+                     shadow-[0_0_10px_rgba(255,215,0,0.3)] hover:shadow-[0_0_15px_rgba(255,215,0,0.5)]
+                     border border-gold/20 hover:border-gold/40"
           >
             Reservar Presente
           </Button>
         )}
+        
+        {/* Decoração inferior */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
       </div>
     </div>
   );
