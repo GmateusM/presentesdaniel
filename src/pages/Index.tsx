@@ -100,6 +100,15 @@ const Index = () => {
           />
         )}
       </main>
+
+      <footer className="relative py-16 px-6 bg-gradient-to-r from-navy to-navy-light text-white overflow-hidden mt-12">
+        <div className="absolute inset-0 bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdS11cYT-aVigTc7F_PAQOfb02UgIlCcRnWg&usqp=CAU')] opacity-10" />
+        <div className="relative container max-w-4xl mx-auto text-center">
+          <p className="text-2xl md:text-3xl text-white/90 font-playfair animate-fade-up">
+            Agradecemos imensamente por fazer parte da nossa história
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
