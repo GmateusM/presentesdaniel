@@ -16,17 +16,17 @@ export const GiftCard = ({ gift, onReserve, isReserved, reservedBy }: GiftCardPr
   const { toast } = useToast();
 
   const handleReserve = () => {
-    const name = prompt("Please enter your name to reserve this gift:");
+    const name = prompt("Por favor, digite seu nome para reservar este presente:");
     if (name && name.trim().length >= 3) {
       onReserve(gift.id, name.trim());
       toast({
-        title: "Gift Reserved!",
-        description: "Thank you for your reservation.",
+        title: "Presente Reservado!",
+        description: "Obrigado pela sua reserva.",
       });
     } else if (name !== null) {
       toast({
-        title: "Invalid Name",
-        description: "Please enter a name with at least 3 characters.",
+        title: "Nome Inválido",
+        description: "Por favor, digite um nome com pelo menos 3 caracteres.",
         variant: "destructive",
       });
     }
@@ -50,13 +50,13 @@ export const GiftCard = ({ gift, onReserve, isReserved, reservedBy }: GiftCardPr
       <div className="p-6">
         <h3 className="font-playfair text-xl mb-4 text-gray-800">{gift.name}</h3>
         {isReserved ? (
-          <p className="text-sm text-gray-500 mb-4">Reserved by {reservedBy}</p>
+          <p className="text-sm text-gray-500 mb-4">Reservado por {reservedBy}</p>
         ) : (
           <Button
             onClick={handleReserve}
             className="w-full bg-navy hover:bg-navy-light transition-colors"
           >
-            Reserve Gift
+            Reservar Presente
           </Button>
         )}
       </div>

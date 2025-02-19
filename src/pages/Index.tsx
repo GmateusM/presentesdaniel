@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { GiftCard } from "@/components/GiftCard";
 import { AdminPanel } from "@/components/AdminPanel";
@@ -59,6 +60,9 @@ const Index = () => {
           <h1 className="font-playfair text-5xl md:text-6xl mb-6 animate-fade-up">
             Lista de Presentes
           </h1>
+          <p className="text-xl md:text-2xl text-white/80 animate-fade-up mb-6">
+            Estamos muito felizes em compartilhar este momento especial com vocês! Preparamos uma lista de presentes para nos ajudar a começar essa nova fase da nossa vida juntos. Agradecemos pelo carinho e generosidade de todos!
+          </p>
           <p className="text-xl md:text-2xl text-white/80 animate-fade-up">
             Escolha o presente perfeito para celebrar este momento especial!
           </p>
@@ -84,7 +88,7 @@ const Index = () => {
             onClick={() => setShowAdmin(!showAdmin)}
             className="text-navy hover:text-navy-light"
           >
-            {showAdmin ? "Hide Admin Panel" : "Show Admin Panel"}
+            {showAdmin ? "Ocultar Painel Admin" : "Mostrar Painel Admin"}
           </Button>
         </div>
 
