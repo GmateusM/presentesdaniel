@@ -57,13 +57,14 @@ const Index = () => {
       <header className="relative py-20 px-6 bg-gradient-to-r from-navy to-navy-light text-white overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdS11cYT-aVigTc7F_PAQOfb02UgIlCcRnWg&usqp=CAU')] opacity-10" />
         <div className="relative container max-w-4xl mx-auto text-center">
-          <h1 className="font-playfair text-5xl md:text-6xl mb-6 animate-fade-up">
+          <h1 className="font-playfair text-6xl md:text-7xl mb-8 animate-fade-up tracking-wide italic">
             Lista de Presentes
           </h1>
-          <p className="text-xl md:text-2xl text-white/80 animate-fade-up mb-6">
+          <div className="w-32 h-1 bg-gold mx-auto mb-8 animate-fade-up"></div>
+          <p className="text-xl md:text-2xl text-white/80 animate-fade-up mb-6 font-playfair italic">
             Estamos muito felizes em compartilhar este momento especial com vocês! Preparamos uma lista de presentes para nos ajudar a começar essa nova fase da nossa vida juntos. Agradecemos pelo carinho e generosidade de todos!
           </p>
-          <p className="text-xl md:text-2xl text-white/80 animate-fade-up">
+          <p className="text-xl md:text-2xl text-white/80 animate-fade-up font-playfair italic">
             Escolha o presente perfeito para celebrar este momento especial!
           </p>
         </div>
@@ -104,7 +105,7 @@ const Index = () => {
       <footer className="relative py-16 px-6 bg-gradient-to-r from-navy to-navy-light text-white overflow-hidden mt-12">
         <div className="absolute inset-0 bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdS11cYT-aVigTc7F_PAQOfb02UgIlCcRnWg&usqp=CAU')] opacity-10" />
         <div className="relative container max-w-4xl mx-auto text-center">
-          <p className="text-2xl md:text-3xl text-white/90 font-playfair animate-fade-up">
+          <p className="text-2xl md:text-3xl text-white/90 font-playfair italic animate-fade-up">
             Agradecemos imensamente por fazer parte da nossa história
           </p>
         </div>
