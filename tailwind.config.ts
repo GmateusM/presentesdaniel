@@ -42,6 +42,7 @@ export default {
       fontFamily: {
         playfair: ["Playfair Display", "serif"],
         inter: ["Inter", "sans-serif"],
+        maeculpa: ["Mae Culpa", "cursive"],
       },
       keyframes: {
         "fade-up": {

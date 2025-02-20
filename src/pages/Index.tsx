@@ -57,7 +57,7 @@ const Index = () => {
       <header className="relative py-20 px-6 bg-gradient-to-r from-navy to-navy-light text-white overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdS11cYT-aVigTc7F_PAQOfb02UgIlCcRnWg&usqp=CAU')] opacity-10" />
         <div className="relative container max-w-4xl mx-auto text-center">
-          <h1 className="font-playfair text-6xl md:text-7xl mb-8 animate-fade-up tracking-wide italic">
+          <h1 className="font-maeculpa text-7xl md:text-8xl mb-8 animate-fade-up tracking-wide">
             Lista de Presentes
           </h1>
           <div className="w-32 h-1 bg-gold mx-auto mb-8 animate-fade-up"></div>
