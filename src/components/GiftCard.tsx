@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Gift } from "@/types/gift";
+import { sendReservationEmail } from "@/services/emailService";
 
 interface GiftCardProps {
   gift: Gift;
@@ -13,16 +14,39 @@ interface GiftCardProps {
 
 export const GiftCard = ({ gift, onReserve, isReserved, reservedBy }: GiftCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isSending, setIsSending] = useState(false);
   const { toast } = useToast();
 
-  const handleReserve = () => {
+  const handleReserve = async () => {
     const name = prompt("Por favor, digite seu nome para reservar este presente:");
     if (name && name.trim().length >= 3) {
+      setIsSending(true);
+      
+      // Reservar o presente
       onReserve(gift.id, name.trim());
-      toast({
-        title: "Presente Reservado!",
-        description: "Obrigado pela sua reserva.",
-      });
+      
+      // Enviar email de notificação
+      try {
+        await sendReservationEmail({
+          toName: "Administrador", // Nome de quem receberá o email
+          fromName: name.trim(),
+          giftName: gift.name,
+          message: `O presente "${gift.name}" foi reservado por ${name.trim()}.`
+        });
+        
+        toast({
+          title: "Presente Reservado!",
+          description: "Reserva realizada e notificação enviada com sucesso.",
+        });
+      } catch (error) {
+        console.error("Erro ao enviar email:", error);
+        toast({
+          title: "Presente Reservado!",
+          description: "Sua reserva foi realizada, mas houve um problema ao enviar a notificação.",
+        });
+      } finally {
+        setIsSending(false);
+      }
     } else if (name !== null) {
       toast({
         title: "Nome Inválido",
@@ -67,11 +91,12 @@ export const GiftCard = ({ gift, onReserve, isReserved, reservedBy }: GiftCardPr
         ) : (
           <Button
             onClick={handleReserve}
+            disabled={isSending}
             className="w-full bg-gold hover:bg-gold-dark text-gray-900 font-medium transition-all duration-300 
                      shadow-[0_0_10px_rgba(255,215,0,0.3)] hover:shadow-[0_0_15px_rgba(255,215,0,0.5)]
                      border border-gold/20 hover:border-gold/40"
           >
-            Reservar Presente
+            {isSending ? "Processando..." : "Reservar Presente"}
           </Button>
         )}
         
