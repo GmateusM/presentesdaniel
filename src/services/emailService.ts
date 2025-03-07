@@ -5,6 +5,7 @@ import emailjs from 'emailjs-com';
 const SERVICE_ID = "YOUR_SERVICE_ID";
 const TEMPLATE_ID = "YOUR_TEMPLATE_ID";
 const USER_ID = "YOUR_USER_ID";
+const ADMIN_EMAIL = "gmateusm2020@gmail.com";
 
 interface EmailParams {
   toName: string;
@@ -20,6 +21,7 @@ export const sendReservationEmail = async (params: EmailParams): Promise<boolean
       from_name: params.fromName,
       gift_name: params.giftName,
       message: params.message || '',
+      to_email: ADMIN_EMAIL, // Adicionando o email do administrador
     };
 
     await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, USER_ID);

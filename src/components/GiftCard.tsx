@@ -28,10 +28,10 @@ export const GiftCard = ({ gift, onReserve, isReserved, reservedBy }: GiftCardPr
       // Enviar email de notificação
       try {
         await sendReservationEmail({
-          toName: "Administrador", // Nome de quem receberá o email
+          toName: "Daniel", // Nome de quem receberá o email
           fromName: name.trim(),
           giftName: gift.name,
-          message: `O presente "${gift.name}" foi reservado por ${name.trim()}.`
+          message: `O presente "${gift.name}" foi reservado por ${name.trim()}. Você receberá esta notificação em gmateusm2020@gmail.com`
         });
         
         toast({
