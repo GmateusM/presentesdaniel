@@ -3,7 +3,7 @@ import emailjs from 'emailjs-com';
 
 // As chaves públicas do EmailJS são seguras para usar no frontend
 const SERVICE_ID = "service_sw2qy8f";
-const TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+const TEMPLATE_ID = "template_2uupoje";
 const USER_ID = "YOUR_USER_ID";
 const ADMIN_EMAIL = "gmateusm2020@gmail.com";
 
