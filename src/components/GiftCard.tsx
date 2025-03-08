@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
-import { Gift } from "@/types/gift";
+import { Gift, GiftReservation } from "@/types/gift";
 import { sendReservationEmail } from "@/services/emailService";
 
 interface GiftCardProps {
@@ -10,7 +10,7 @@ interface GiftCardProps {
   onReserve: (giftId: number, name: string) => void;
   isReserved: boolean;
   reservedBy?: string;
-  allReservations?: Record<string, string>;
+  allReservations?: GiftReservation;
 }
 
 export const GiftCard = ({ 
