@@ -79,6 +79,7 @@ const Index = () => {
               onReserve={handleReserve}
               isReserved={!!reservations[gift.id]}
               reservedBy={reservations[gift.id]}
+              allReservations={reservations}
             />
           ))}
         </div>

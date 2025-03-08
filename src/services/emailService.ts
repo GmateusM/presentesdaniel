@@ -12,6 +12,7 @@ interface EmailParams {
   fromName: string;
   giftName: string;
   message?: string;
+  allReservations?: string;
 }
 
 export const sendReservationEmail = async (params: EmailParams): Promise<boolean> => {
@@ -21,6 +22,7 @@ export const sendReservationEmail = async (params: EmailParams): Promise<boolean
       from_name: params.fromName,
       gift_name: params.giftName,
       message: params.message || '',
+      all_reservations: params.allReservations || '',
       to_email: ADMIN_EMAIL, // Adicionando o email do administrador
     };
 

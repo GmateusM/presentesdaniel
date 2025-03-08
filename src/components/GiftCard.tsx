@@ -10,9 +10,16 @@ interface GiftCardProps {
   onReserve: (giftId: number, name: string) => void;
   isReserved: boolean;
   reservedBy?: string;
+  allReservations?: Record<string, string>;
 }
 
-export const GiftCard = ({ gift, onReserve, isReserved, reservedBy }: GiftCardProps) => {
+export const GiftCard = ({ 
+  gift, 
+  onReserve, 
+  isReserved, 
+  reservedBy,
+  allReservations = {}
+}: GiftCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const { toast } = useToast();
@@ -25,13 +32,25 @@ export const GiftCard = ({ gift, onReserve, isReserved, reservedBy }: GiftCardPr
       // Reservar o presente
       onReserve(gift.id, name.trim());
       
+      // Preparar lista completa de reservas para o email
+      const updatedReservations = {
+        ...allReservations,
+        [gift.id]: name.trim()
+      };
+      
+      // Formatar as reservas para o email
+      const reservationsText = Object.entries(updatedReservations)
+        .map(([giftId, reserverName]) => `ID ${giftId}: Reservado por ${reserverName}`)
+        .join('\n');
+
       // Enviar email de notificação
       try {
         await sendReservationEmail({
           toName: "Daniel", // Nome de quem receberá o email
           fromName: name.trim(),
           giftName: gift.name,
-          message: `O presente "${gift.name}" foi reservado por ${name.trim()}. Você receberá esta notificação em gmateusm2020@gmail.com`
+          message: `O presente "${gift.name}" foi reservado por ${name.trim()}. Você receberá esta notificação em gmateusm2020@gmail.com`,
+          allReservations: reservationsText
         });
         
         toast({
