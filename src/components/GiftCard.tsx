@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -47,7 +48,7 @@ export const GiftCard = ({
 
       // Enviar email de notificação
       try {
-        await sendReservationEmail({
+        const emailSent = await sendReservationEmail({
           toName: "Daniel", // Nome de quem receberá o email
           fromName: name.trim(),
           giftName: gift.name,
@@ -56,10 +57,14 @@ export const GiftCard = ({
           gitHubUpdateInstructions: gitHubUpdateText
         });
         
-        toast({
-          title: "Presente Reservado!",
-          description: "Reserva realizada e notificação enviada com sucesso.",
-        });
+        if (emailSent) {
+          toast({
+            title: "Presente Reservado!",
+            description: "Reserva realizada e notificação enviada com sucesso. Um arquivo com as reservas atualizadas também foi baixado.",
+          });
+        } else {
+          throw new Error("Falha ao enviar email");
+        }
       } catch (error) {
         console.error("Erro ao enviar email:", error);
         toast({
