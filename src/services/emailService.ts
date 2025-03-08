@@ -36,3 +36,18 @@ export const sendReservationEmail = async (params: EmailParams): Promise<boolean
     return false;
   }
 };
+
+export const generateReservationsCode = (reservations: Record<number, string>): string => {
+  return `// Atualize este código em seu repositório
+
+// Reservas atualizadas
+const giftReservations = ${JSON.stringify(reservations, null, 2)};
+
+/*
+INSTRUÇÕES:
+1. Crie ou atualize o arquivo reservations.json no seu repositório GitHub
+2. Cole o conteúdo de 'giftReservations' acima (sem as aspas)
+3. Commit e push das alterações para atualizar o site
+*/
+`;
+};

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,6 +12,8 @@ import {
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
+import { Download } from "lucide-react";
+import { generateGiftsDownload } from "@/utils/downloadUtils";
 
 interface AdminPanelProps {
   gifts: Gift[];
@@ -82,6 +83,14 @@ export const AdminPanel = ({
     }
   };
 
+  const handleDownloadGiftsCode = () => {
+    generateGiftsDownload(gifts);
+    toast({
+      title: "Código Gerado",
+      description: "O arquivo com o código atualizado foi baixado com sucesso.",
+    });
+  };
+
   if (!isAuthenticated) {
     return (
       <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-xl shadow-lg animate-fade-up">
@@ -110,6 +119,16 @@ export const AdminPanel = ({
   return (
     <div className="mt-8 p-6 bg-white rounded-xl shadow-lg animate-fade-in">
       <h2 className="font-playfair text-2xl mb-6 text-center">Painel Administrativo</h2>
+      
+      <div className="flex justify-end mb-4">
+        <Button 
+          onClick={handleDownloadGiftsCode}
+          className="bg-navy hover:bg-navy-dark text-white flex items-center gap-2"
+        >
+          <Download size={18} />
+          Baixar Código Atualizado
+        </Button>
+      </div>
       
       <Tabs defaultValue="reservations" className="w-full">
         <TabsList className="grid w-full grid-cols-2 mb-6">

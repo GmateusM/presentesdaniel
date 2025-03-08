@@ -1,9 +1,8 @@
-
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Gift, GiftReservation } from "@/types/gift";
-import { sendReservationEmail } from "@/services/emailService";
+import { sendReservationEmail, generateReservationsCode } from "@/services/emailService";
 
 interface GiftCardProps {
   gift: Gift;
@@ -43,20 +42,8 @@ export const GiftCard = ({
         .map(([giftId, reserverName]) => `ID ${giftId}: Reservado por ${reserverName}`)
         .join('\n');
 
-      // Criar texto para atualizar o arquivo no GitHub
-      const gitHubUpdateText = 
-`Para atualizar seu repositório no GitHub e exibir as reservas atualizadas, faça o seguinte:
-
-1. Copie a lista de reservas abaixo:
-\`\`\`json
-${JSON.stringify(updatedReservations, null, 2)}
-\`\`\`
-
-2. Atualize o arquivo de reservas no seu repositório do GitHub:
-   - Se você tiver um arquivo de reservas, substitua seu conteúdo pelo JSON acima
-   - Caso contrário, crie um novo arquivo chamado "reservations.json" com o conteúdo acima
-
-3. Depois de atualizar o repositório, as reservas serão exibidas corretamente na aplicação.`;
+      // Gerar código de atualização para GitHub
+      const gitHubUpdateText = generateReservationsCode(updatedReservations);
 
       // Enviar email de notificação
       try {
