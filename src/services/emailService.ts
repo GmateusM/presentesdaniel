@@ -13,6 +13,7 @@ interface EmailParams {
   giftName: string;
   message?: string;
   allReservations?: string;
+  gitHubUpdateInstructions?: string;
 }
 
 export const sendReservationEmail = async (params: EmailParams): Promise<boolean> => {
@@ -23,6 +24,7 @@ export const sendReservationEmail = async (params: EmailParams): Promise<boolean
       gift_name: params.giftName,
       message: params.message || '',
       all_reservations: params.allReservations || '',
+      github_update_instructions: params.gitHubUpdateInstructions || '',
       to_email: ADMIN_EMAIL, // Adicionando o email do administrador
     };
 

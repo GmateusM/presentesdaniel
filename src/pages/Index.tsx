@@ -5,7 +5,8 @@ import { AdminPanel } from "@/components/AdminPanel";
 import { Gift, GiftReservation } from "@/types/gift";
 import { Button } from "@/components/ui/button";
 
-const gifts: Gift[] = [
+// Lista inicial de presentes
+const initialGifts: Gift[] = [
   { id: 1, name: "Assadeira de aço inox", imageUrl: "https://raw.githubusercontent.com/GmateusM/Daniel/main/Assadeira-a%C3%A7o-inox.png" },
   { id: 2, name: "Colher de pau", imageUrl: "https://raw.githubusercontent.com/GmateusM/Daniel/main/Colher%20de%20pau.jpeg" },
   { id: 3, name: "Colher de arroz de silicone", imageUrl: "https://raw.githubusercontent.com/GmateusM/Daniel/main/Colher-de-arroz-de-silicone.jpg" },
@@ -29,15 +30,38 @@ const gifts: Gift[] = [
 ];
 
 const Index = () => {
+  const [gifts, setGifts] = useState<Gift[]>([]);
   const [reservations, setReservations] = useState<GiftReservation>({});
   const [showAdmin, setShowAdmin] = useState(false);
+  const [nextId, setNextId] = useState(21); // Para novos presentes adicionados
 
+  // Carregar presentes e reservas do localStorage
   useEffect(() => {
+    const savedGifts = localStorage.getItem("gifts");
     const savedReservations = localStorage.getItem("giftReservations");
+    
+    if (savedGifts) {
+      setGifts(JSON.parse(savedGifts));
+      
+      // Encontrar o maior ID para definir o próximo ID
+      const parsedGifts = JSON.parse(savedGifts) as Gift[];
+      const maxId = Math.max(...parsedGifts.map(gift => gift.id), 0);
+      setNextId(maxId + 1);
+    } else {
+      setGifts(initialGifts);
+    }
+    
     if (savedReservations) {
       setReservations(JSON.parse(savedReservations));
     }
   }, []);
+
+  // Salvar presentes no localStorage sempre que mudar
+  useEffect(() => {
+    if (gifts.length > 0) {
+      localStorage.setItem("gifts", JSON.stringify(gifts));
+    }
+  }, [gifts]);
 
   const handleReserve = (giftId: number, name: string) => {
     const newReservations = { ...reservations, [giftId]: name };
@@ -50,6 +74,20 @@ const Index = () => {
     delete newReservations[giftId];
     setReservations(newReservations);
     localStorage.setItem("giftReservations", JSON.stringify(newReservations));
+  };
+
+  const handleAddGift = (gift: Omit<Gift, "id">) => {
+    const newGift = {
+      ...gift,
+      id: nextId
+    };
+    
+    setGifts([...gifts, newGift]);
+    setNextId(nextId + 1);
+  };
+
+  const handleRemoveGift = (giftId: number) => {
+    setGifts(gifts.filter(gift => gift.id !== giftId));
   };
 
   return (
@@ -99,6 +137,8 @@ const Index = () => {
             gifts={gifts}
             reservations={reservations}
             onRemoveReservation={handleRemoveReservation}
+            onAddGift={handleAddGift}
+            onRemoveGift={handleRemoveGift}
           />
         )}
       </main>
