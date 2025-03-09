@@ -60,7 +60,7 @@ export const GiftCard = ({
         if (emailSent) {
           toast({
             title: "Presente Reservado!",
-            description: "Reserva realizada e notificação enviada com sucesso. Um arquivo com as reservas atualizadas também foi baixado.",
+            description: "Reserva realizada e notificação enviada com sucesso.",
           });
         } else {
           throw new Error("Falha ao enviar email");

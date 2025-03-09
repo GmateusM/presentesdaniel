@@ -36,9 +36,6 @@ export const sendReservationEmail = async (params: EmailParams): Promise<boolean
     await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, USER_ID);
     console.log('Email enviado com sucesso!');
     
-    // Vamos também fazer o download do arquivo de reservas para backup local
-    downloadReservationsFile(params.gitHubUpdateInstructions || '');
-    
     return true;
   } catch (error) {
     console.error('Erro ao enviar email:', error);
@@ -59,21 +56,4 @@ INSTRUÇÕES:
 3. Commit e push das alterações para atualizar o site
 */
 `;
-};
-
-// Função auxiliar para fazer download do arquivo de reservas
-const downloadReservationsFile = (content: string) => {
-  const blob = new Blob([content], { type: 'text/javascript' });
-  const url = URL.createObjectURL(blob);
-  
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'reservas-atualizadas.js';
-  document.body.appendChild(a);
-  a.click();
-  
-  setTimeout(() => {
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }, 100);
 };
