@@ -1,10 +1,11 @@
+
 import { useState, useEffect } from "react";
 import { GiftCard } from "@/components/GiftCard";
 import { AdminPanel } from "@/components/AdminPanel";
 import { Gift, GiftReservation } from "@/types/gift";
 import { Button } from "@/components/ui/button";
 
-// Lista de presentes (apenas os novos itens)
+// Lista de presentes (apenas os itens das imagens enviadas)
 const initialGifts: Gift[] = [
   { id: 1, name: "Conjunto de refratários de vidro", imageUrl: "public/lovable-uploads/0bb05816-9eb4-4468-b1f9-e85d8b48267b.png" },
   { id: 2, name: "Conjunto de azeiteiro e vinagreiro", imageUrl: "public/lovable-uploads/7f9d1bec-bc10-44aa-b116-bbe6988166be.png" },
