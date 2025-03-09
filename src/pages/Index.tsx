@@ -27,6 +27,17 @@ const initialGifts: Gift[] = [
   { id: 18, name: "Refratário 30x20", imageUrl: "https://raw.githubusercontent.com/GmateusM/Daniel/main/Refrat%C3%A1rio-30x20.jpg" },
   { id: 19, name: "Rolo de massas", imageUrl: "https://raw.githubusercontent.com/GmateusM/Daniel/main/Rolo%20de%20massas.jpg" },
   { id: 20, name: "Tábua de corte 45 cm", imageUrl: "https://raw.githubusercontent.com/GmateusM/Daniel/main/T%C3%A1bua-de-corte-45-cm.jpg" }
+  { id: 21, name: "Panela antiaderente", imageUrl: "https://raw.githubusercontent.com/GmateusM/presentesdaniel/fbf8fd9089e4e1b247b7fca49475f650352ba5be/public/lovable-uploads/046e7e1e-a566-4757-8606-1a72f00cd19c.png?token=AZV3EXCWSFHZMU75ETDXDFTHZYJ5E" },
+  { id: 22, name: "tÃ¡bua de passar roupa dobrÃ¡vel", imageUrl: "https://raw.githubusercontent.com/GmateusM/presentesdaniel/fbf8fd9089e4e1b247b7fca49475f650352ba5be/public/lovable-uploads/08086239-fa91-4c05-a225-593b708e6660.png?token=AZV3EXDUZV27X2AT6DURGADHZYJ5E" },
+  { id: 23, name: "Conjunto de travessa de vidro", imageUrl: "https://www.havan.com.br/media/catalog/product/cache/820af7facfa7aca6eb3c138e3457dc8d/j/o/jogo-de-travessas-retangular-02-pecas-sempre_808899.webp" },
+  { id: 24, name: "Moedor de pimenta", imageUrl: "https://ae-pic-a1.aliexpress-media.com/kf/Hf51e9f928b604a94bc18d87f8db37a71z.jpg_960x960q75.jpg_.avif" },
+  { id: 25, name: "Jogo de panela antiaderente", imageUrl: "https://raw.githubusercontent.com/GmateusM/presentesdaniel/fbf8fd9089e4e1b247b7fca49475f650352ba5be/public/lovable-uploads/1b979276-c6d3-4a53-b16a-75dd80751ca6.png?token=AZV3EXCZLRK5KUXFAEVDCKLHZYLKI" },
+  { id: 26, name: "Panela de pressÃ£o antiaderente", imageUrl: "https://raw.githubusercontent.com/GmateusM/presentesdaniel/fbf8fd9089e4e1b247b7fca49475f650352ba5be/public/lovable-uploads/510a9abe-9419-4062-9636-326620582f8c.png?token=AZV3EXANJHP6SXXINBVWZ6THZYLKI" },
+  { id: 27, name: "TÃ¡bua de madeira 35cm", imageUrl: "https://raw.githubusercontent.com/GmateusM/presentesdaniel/fbf8fd9089e4e1b247b7fca49475f650352ba5be/public/lovable-uploads/6d82db39-2656-4443-b5a6-59a48f10168d.png?token=AZV3EXBUYMAH4F53EQ6KZO3HZYLPQ" },
+  { id: 28, name: "Kit porta azeite e vinagre", imageUrl: "https://raw.githubusercontent.com/GmateusM/presentesdaniel/fbf8fd9089e4e1b247b7fca49475f650352ba5be/public/lovable-uploads/7f9d1bec-bc10-44aa-b116-bbe6988166be.png?token=AZV3EXB5C4HHS4NXNIEFPPLHZYLPQ" },
+  { id: 29, name: "Liquidificador", imageUrl: "https://raw.githubusercontent.com/GmateusM/presentesdaniel/fbf8fd9089e4e1b247b7fca49475f650352ba5be/public/lovable-uploads/a22436c0-bf91-44a3-9d43-bbccb9ed54d6.png?token=AZV3EXF327C5H2BQ3JDVB4LHZYLPQ" },
+  { id: 30, name: "Assadeira inox", imageUrl: "https://raw.githubusercontent.com/GmateusM/presentesdaniel/fbf8fd9089e4e1b247b7fca49475f650352ba5be/public/lovable-uploads/e3134c31-8df3-41d5-bc97-33fa123ee74f.png?token=AZV3EXHALXYGMXFPIIMBKBDHZYLPQ" },
+  { id: 31, name: "Escada alumÃ­nio 5 degraus", imageUrl: "https://raw.githubusercontent.com/GmateusM/presentesdaniel/fbf8fd9089e4e1b247b7fca49475f650352ba5be/public/lovable-uploads/efcd1e9a-9bd3-455c-bc7e-8cd31b023649.png?token=AZV3EXFEYAL5X3I4AYUOGE3HZYLPQ" }
 ];
 
 const Index = () => {
