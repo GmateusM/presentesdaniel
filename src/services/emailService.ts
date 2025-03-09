@@ -19,8 +19,12 @@ interface EmailParams {
 export const sendReservationEmail = async (params: EmailParams): Promise<boolean> => {
   try {
     // Certifica-se de que o conteúdo do GitHub está formatado adequadamente para o e-mail
+    // Adiciona espaços extras e formatação para melhorar a legibilidade no email
     const formattedGitHubInstructions = params.gitHubUpdateInstructions 
-      ? params.gitHubUpdateInstructions.replace(/\n/g, '<br>')
+      ? params.gitHubUpdateInstructions
+          .replace(/\n/g, '<br>')
+          .replace(/(const giftReservations =)/g, '<strong>$1</strong>')
+          .replace(/(INSTRUÇÕES:)/g, '<strong>$1</strong>')
       : '';
 
     const templateParams = {
