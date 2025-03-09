@@ -26,19 +26,7 @@ const initialGifts: Gift[] = [
   { id: 17, name: "Refratário 45x35", imageUrl: "https://raw.githubusercontent.com/GmateusM/Daniel/main/Refrat%C3%A1rio%2045x35.jpg" },
   { id: 18, name: "Refratário 30x20", imageUrl: "https://raw.githubusercontent.com/GmateusM/Daniel/main/Refrat%C3%A1rio-30x20.jpg" },
   { id: 19, name: "Rolo de massas", imageUrl: "https://raw.githubusercontent.com/GmateusM/Daniel/main/Rolo%20de%20massas.jpg" },
-  { id: 20, name: "Tábua de corte 45 cm", imageUrl: "https://raw.githubusercontent.com/GmateusM/Daniel/main/T%C3%A1bua-de-corte-45-cm.jpg" },
-  // Novos itens
-  { id: 21, name: "Conjunto de refratários de vidro", imageUrl: "public/lovable-uploads/0bb05816-9eb4-4468-b1f9-e85d8b48267b.png" },
-  { id: 22, name: "Conjunto de azeiteiro e vinagreiro", imageUrl: "public/lovable-uploads/7f9d1bec-bc10-44aa-b116-bbe6988166be.png" },
-  { id: 23, name: "Tábua de corte de bambu", imageUrl: "public/lovable-uploads/6d82db39-2656-4443-b5a6-59a48f10168d.png" },
-  { id: 24, name: "Frigideira antiaderente vermelha", imageUrl: "public/lovable-uploads/046e7e1e-a566-4757-8606-1a72f00cd19c.png" },
-  { id: 25, name: "Assadeira de vidro retangular", imageUrl: "public/lovable-uploads/e3134c31-8df3-41d5-bc97-33fa123ee74f.png" },
-  { id: 26, name: "Moedor de pimenta em madeira", imageUrl: "public/lovable-uploads/18226053-a8df-4fa7-8180-6fe6af095052.png" },
-  { id: 27, name: "Conjunto de panelas turquesa (5 peças)", imageUrl: "public/lovable-uploads/1b979276-c6d3-4a53-b16a-75dd80751ca6.png" },
-  { id: 28, name: "Panela de pressão azul", imageUrl: "public/lovable-uploads/510a9abe-9419-4062-9636-326620582f8c.png" },
-  { id: 29, name: "Liquidificador azul", imageUrl: "public/lovable-uploads/a22436c0-bf91-44a3-9d43-bbccb9ed54d6.png" },
-  { id: 30, name: "Tábua de passar roupa", imageUrl: "public/lovable-uploads/08086239-fa91-4c05-a225-593b708e6660.png" },
-  { id: 31, name: "Escada doméstica (5 degraus)", imageUrl: "public/lovable-uploads/efcd1e9a-9bd3-455c-bc7e-8cd31b023649.png" }
+  { id: 20, name: "Tábua de corte 45 cm", imageUrl: "https://raw.githubusercontent.com/GmateusM/Daniel/main/T%C3%A1bua-de-corte-45-cm.jpg" }
 ];
 
 const Index = () => {
