@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 // Lista atualizada de presentes com novas imagens
 const initialGifts: Gift[] = [
-  { id: 1, name: "Conjunto de refratários de vidro", imageUrl: "/lovable-uploads/9df4995e-8c00-41cb-ab15-1b562af585a3.png" },
+  { id: 1, name: "Conjunto de refratários de vidro", imageUrl: "/https://m.media-amazon.com/images/I/51kxx9bs10L._AC_SL1500_.jpg" },
   { id: 2, name: "Conjunto de azeiteiro e vinagreiro", imageUrl: "/lovable-uploads/79a54b10-bd69-4c92-a1b5-4027da07fb98.png" },
   { id: 3, name: "Tábua de corte de bambu", imageUrl: "/lovable-uploads/5a6c50ef-431b-4f42-901b-66d398b0666f.png" },
   { id: 4, name: "Frigideira antiaderente vermelha", imageUrl: "/lovable-uploads/6ba2dd70-a3ee-400f-a1f4-c95ccc8ebe5a.png" },
