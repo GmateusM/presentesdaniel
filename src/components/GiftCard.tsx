@@ -83,26 +83,21 @@ export const GiftCard = ({
     }
   };
 
-  // Get correct image URL
+  // Get correct image URL - improved image handling
   let imageUrl = gift.imageUrl;
   
-  // Check if image URL is valid and format properly
+  // Check if image URL is valid 
   if (imageUrl.startsWith("/lovable-uploads/")) {
-    // URL is already in the correct format
-    imageUrl = imageUrl;
+    // URL is already in the correct format for public folder
+    // Keep as is
   } else if (imageUrl.startsWith("http")) {
-    // URL is already absolute
-    imageUrl = imageUrl;
+    // External URL - keep as is
   } else {
     // Add proper prefix if needed
     imageUrl = `/lovable-uploads/${imageUrl}`;
   }
-
-  // Fallback to placeholder if there was an error loading
-  if (imgError) {
-    imageUrl = '/placeholder.svg';
-  }
-
+  
+  // Debug image loading
   console.log("Rendering gift:", gift.id, "name:", gift.name, "with image URL:", imageUrl);
 
   return (
@@ -116,7 +111,7 @@ export const GiftCard = ({
       
       <div className="relative overflow-hidden aspect-square">
         <img
-          src={imageUrl}
+          src={imgError ? "/placeholder.svg" : imageUrl}
           alt={gift.name}
           className={`w-full h-full object-cover transition-transform duration-300 ${
             isHovered ? "scale-110" : "scale-100"
