@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -84,14 +83,27 @@ export const GiftCard = ({
     }
   };
 
-  // Fix image URL if it doesn't include the full path
-  const imageUrl = imgError 
-    ? '/placeholder.svg' 
-    : gift.imageUrl.startsWith('http') 
-      ? gift.imageUrl 
-      : gift.imageUrl;
+  // Get correct image URL
+  let imageUrl = gift.imageUrl;
+  
+  // Check if image URL is valid and format properly
+  if (imageUrl.startsWith("/lovable-uploads/")) {
+    // URL is already in the correct format
+    imageUrl = imageUrl;
+  } else if (imageUrl.startsWith("http")) {
+    // URL is already absolute
+    imageUrl = imageUrl;
+  } else {
+    // Add proper prefix if needed
+    imageUrl = `/lovable-uploads/${imageUrl}`;
+  }
 
-  console.log("Rendering gift:", gift.id, "with image URL:", imageUrl);
+  // Fallback to placeholder if there was an error loading
+  if (imgError) {
+    imageUrl = '/placeholder.svg';
+  }
+
+  console.log("Rendering gift:", gift.id, "name:", gift.name, "with image URL:", imageUrl);
 
   return (
     <div
@@ -110,7 +122,7 @@ export const GiftCard = ({
             isHovered ? "scale-110" : "scale-100"
           }`}
           onError={(e) => {
-            console.error(`Error loading image: ${imageUrl}`);
+            console.error(`Error loading image: ${imageUrl} for gift: ${gift.name}`);
             setImgError(true);
             const target = e.target as HTMLImageElement;
             target.src = '/placeholder.svg'; // Fallback image

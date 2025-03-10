@@ -4,7 +4,7 @@ import { AdminPanel } from "@/components/AdminPanel";
 import { Gift, GiftReservation } from "@/types/gift";
 import { Button } from "@/components/ui/button";
 
-// Lista inicial de presentes
+// Lista inicial de presentes - Todos com caminhos de imagem corretos
 const initialGifts: Gift[] = [
   { id: 1, name: "Conjunto de refratários de vidro", imageUrl: "/lovable-uploads/4416c757-818c-48f3-94aa-5de3a83f2de8.png" },
   { id: 2, name: "Conjunto de azeiteiro e vinagreiro", imageUrl: "/lovable-uploads/6d414486-e76e-45bb-aaea-faa4038f5187.png" },
@@ -24,37 +24,51 @@ const Index = () => {
   const [reservations, setReservations] = useState<GiftReservation>({});
   const [showAdmin, setShowAdmin] = useState(false);
   const [nextId, setNextId] = useState(12); // Próximo ID após o último item (11)
+  const [loading, setLoading] = useState(true);
 
   // Carregar presentes e reservas do localStorage
   useEffect(() => {
-    const savedGifts = localStorage.getItem("gifts");
-    const savedReservations = localStorage.getItem("giftReservations");
-    
-    if (savedGifts) {
-      setGifts(JSON.parse(savedGifts));
+    try {
+      const savedGifts = localStorage.getItem("gifts");
+      const savedReservations = localStorage.getItem("giftReservations");
       
-      // Encontrar o maior ID para definir o próximo ID
-      const parsedGifts = JSON.parse(savedGifts) as Gift[];
-      const maxId = Math.max(...parsedGifts.map(gift => gift.id), 0);
-      setNextId(maxId + 1);
-    } else {
+      if (savedGifts) {
+        const parsedGifts = JSON.parse(savedGifts) as Gift[];
+        console.log("Loaded gifts from localStorage:", parsedGifts);
+        setGifts(parsedGifts);
+        
+        // Encontrar o maior ID para definir o próximo ID
+        const maxId = Math.max(...parsedGifts.map(gift => gift.id), 0);
+        setNextId(maxId + 1);
+      } else {
+        console.log("No saved gifts found, using initial gifts");
+        setGifts(initialGifts);
+        // Salvar os presentes iniciais no localStorage
+        localStorage.setItem("gifts", JSON.stringify(initialGifts));
+      }
+      
+      if (savedReservations) {
+        setReservations(JSON.parse(savedReservations));
+      }
+    } catch (error) {
+      console.error("Error loading data from localStorage:", error);
+      // Em caso de erro, usar a lista inicial
       setGifts(initialGifts);
-    }
-    
-    if (savedReservations) {
-      setReservations(JSON.parse(savedReservations));
+    } finally {
+      setLoading(false);
     }
   }, []);
 
   // Console log to check the loaded gifts
   useEffect(() => {
-    console.log("Loaded gifts:", gifts);
+    console.log("Gifts after loading:", gifts);
   }, [gifts]);
 
   // Salvar presentes no localStorage sempre que mudar
   useEffect(() => {
     if (gifts.length > 0) {
       localStorage.setItem("gifts", JSON.stringify(gifts));
+      console.log("Gifts saved to localStorage:", gifts);
     }
   }, [gifts]);
 
@@ -85,6 +99,14 @@ const Index = () => {
     setGifts(gifts.filter(gift => gift.id !== giftId));
   };
 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-xl">Carregando presentes...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="relative py-20 px-6 bg-gradient-to-r from-navy to-navy-light text-white overflow-hidden">
@@ -105,16 +127,22 @@ const Index = () => {
 
       <main className="container py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {gifts.map((gift) => (
-            <GiftCard
-              key={gift.id}
-              gift={gift}
-              onReserve={handleReserve}
-              isReserved={!!reservations[gift.id]}
-              reservedBy={reservations[gift.id]}
-              allReservations={reservations}
-            />
-          ))}
+          {gifts.length > 0 ? (
+            gifts.map((gift) => (
+              <GiftCard
+                key={gift.id}
+                gift={gift}
+                onReserve={handleReserve}
+                isReserved={!!reservations[gift.id]}
+                reservedBy={reservations[gift.id]}
+                allReservations={reservations}
+              />
+            ))
+          ) : (
+            <p className="col-span-3 text-center text-lg text-gray-500 py-8">
+              Nenhum presente disponível no momento.
+            </p>
+          )}
         </div>
 
         <div className="mt-12 text-center">
