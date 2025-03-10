@@ -46,6 +46,11 @@ const Index = () => {
     }
   }, []);
 
+  // Console log to check the loaded gifts
+  useEffect(() => {
+    console.log("Loaded gifts:", gifts);
+  }, [gifts]);
+
   // Salvar presentes no localStorage sempre que mudar
   useEffect(() => {
     if (gifts.length > 0) {

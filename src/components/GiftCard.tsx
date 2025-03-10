@@ -22,6 +22,7 @@ export const GiftCard = ({
 }: GiftCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isSending, setIsSending] = useState(false);
+  const [imgError, setImgError] = useState(false);
   const { toast } = useToast();
 
   const handleReserve = async () => {
@@ -83,6 +84,15 @@ export const GiftCard = ({
     }
   };
 
+  // Fix image URL if it doesn't include the full path
+  const imageUrl = imgError 
+    ? '/placeholder.svg' 
+    : gift.imageUrl.startsWith('http') 
+      ? gift.imageUrl 
+      : gift.imageUrl;
+
+  console.log("Rendering gift:", gift.id, "with image URL:", imageUrl);
+
   return (
     <div
       className="relative group bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl animate-fade-up border-2 border-transparent hover:border-gold/30"
@@ -94,13 +104,14 @@ export const GiftCard = ({
       
       <div className="relative overflow-hidden aspect-square">
         <img
-          src={gift.imageUrl}
+          src={imageUrl}
           alt={gift.name}
           className={`w-full h-full object-cover transition-transform duration-300 ${
             isHovered ? "scale-110" : "scale-100"
           }`}
           onError={(e) => {
-            console.error(`Error loading image: ${gift.imageUrl}`);
+            console.error(`Error loading image: ${imageUrl}`);
+            setImgError(true);
             const target = e.target as HTMLImageElement;
             target.src = '/placeholder.svg'; // Fallback image
           }}
