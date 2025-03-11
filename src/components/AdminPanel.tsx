@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -46,31 +47,50 @@ export const AdminPanel = ({
     if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
       setIsAuthenticated(true);
     } else {
-      alert("Credenciais inválidas");
+      toast({
+        title: "Erro de Login",
+        description: "Credenciais inválidas. Tente novamente.",
+        variant: "destructive",
+      });
     }
   };
 
   const handleAddGift = () => {
-    if (newGiftName.trim() !== "" && newGiftImageUrl.trim() !== "") {
-      onAddGift({
-        name: newGiftName.trim(),
-        imageUrl: newGiftImageUrl.trim()
-      });
-      
-      setNewGiftName("");
-      setNewGiftImageUrl("");
-      
+    if (newGiftName.trim() === "") {
       toast({
-        title: "Presente Adicionado",
-        description: `O presente "${newGiftName.trim()}" foi adicionado com sucesso.`,
-      });
-    } else {
-      toast({
-        title: "Dados Inválidos",
-        description: "Por favor, preencha todos os campos obrigatórios.",
+        title: "Erro ao Adicionar",
+        description: "O nome do presente não pode estar vazio.",
         variant: "destructive",
       });
+      return;
     }
+
+    // Verifica se a URL da imagem está vazia e usa um placeholder se estiver
+    let imageUrl = newGiftImageUrl.trim();
+    if (imageUrl === "") {
+      imageUrl = "/placeholder.svg"; // Usa imagem placeholder se não for fornecida
+    }
+    
+    // Se não começa com http ou /, adiciona / para indicar que é um caminho relativo
+    if (!imageUrl.startsWith('http') && !imageUrl.startsWith('/')) {
+      imageUrl = '/' + imageUrl;
+    }
+    
+    // Chama a função de adicionar presente
+    onAddGift({
+      name: newGiftName.trim(),
+      imageUrl: imageUrl
+    });
+    
+    // Reseta os campos do formulário
+    setNewGiftName("");
+    setNewGiftImageUrl("");
+    
+    // Notifica o usuário
+    toast({
+      title: "Presente Adicionado",
+      description: `O presente "${newGiftName.trim()}" foi adicionado com sucesso.`,
+    });
   };
 
   const handleRemoveGift = (giftId: number, giftName: string) => {
@@ -107,6 +127,7 @@ export const AdminPanel = ({
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
           />
           <Button onClick={handleLogin} className="w-full">
             Login

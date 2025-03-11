@@ -1,12 +1,13 @@
+
 import { useState, useEffect } from "react";
 import { GiftCard } from "@/components/GiftCard";
 import { AdminPanel } from "@/components/AdminPanel";
 import { Gift, GiftReservation } from "@/types/gift";
 import { Button } from "@/components/ui/button";
 
-// Lista atualizada de presentes com novas imagens
+// Lista atualizada de presentes com imagens corrigidas
 const initialGifts: Gift[] = [
-  { id: 1, name: "Conjunto de refratários de vidro", imageUrl: "/https://m.media-amazon.com/images/I/51kxx9bs10L._AC_SL1500_.jpg" },
+  { id: 1, name: "Conjunto de refratários de vidro", imageUrl: "/lovable-uploads/3ce2b63f-df21-418e-912f-c567a7b4aa78.png" },
   { id: 2, name: "Conjunto de azeiteiro e vinagreiro", imageUrl: "/lovable-uploads/79a54b10-bd69-4c92-a1b5-4027da07fb98.png" },
   { id: 3, name: "Tábua de corte de bambu", imageUrl: "/lovable-uploads/5a6c50ef-431b-4f42-901b-66d398b0666f.png" },
   { id: 4, name: "Frigideira antiaderente vermelha", imageUrl: "/lovable-uploads/6ba2dd70-a3ee-400f-a1f4-c95ccc8ebe5a.png" },
@@ -91,12 +92,21 @@ const Index = () => {
       id: nextId
     };
     
-    setGifts([...gifts, newGift]);
+    console.log("Adding new gift:", newGift);
+    const updatedGifts = [...gifts, newGift];
+    setGifts(updatedGifts);
     setNextId(nextId + 1);
+    
+    // Salvar imediatamente no localStorage
+    localStorage.setItem("gifts", JSON.stringify(updatedGifts));
   };
 
   const handleRemoveGift = (giftId: number) => {
-    setGifts(gifts.filter(gift => gift.id !== giftId));
+    const updatedGifts = gifts.filter(gift => gift.id !== giftId);
+    setGifts(updatedGifts);
+    
+    // Salvar imediatamente no localStorage
+    localStorage.setItem("gifts", JSON.stringify(updatedGifts));
   };
 
   if (loading) {

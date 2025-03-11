@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -83,22 +84,16 @@ export const GiftCard = ({
     }
   };
 
-  // Get correct image URL - improved image handling
+  // Processa a URL da imagem adequadamente
   let imageUrl = gift.imageUrl;
   
-  // Check if image URL is valid 
-  if (imageUrl.startsWith("/lovable-uploads/")) {
-    // URL is already in the correct format for public folder
-    // Keep as is
-  } else if (imageUrl.startsWith("http")) {
-    // External URL - keep as is
-  } else {
-    // Add proper prefix if needed
-    imageUrl = `/lovable-uploads/${imageUrl}`;
+  // Verifica se é uma URL externa ou caminho relativo
+  if (!imageUrl.startsWith('http') && !imageUrl.startsWith('/')) {
+    imageUrl = '/' + imageUrl;
   }
   
-  // Debug image loading
-  console.log("Rendering gift:", gift.id, "name:", gift.name, "with image URL:", imageUrl);
+  // Logs para debugging
+  console.log(`Renderizando presente ID ${gift.id}: ${gift.name} com URL de imagem: ${imageUrl}`);
 
   return (
     <div
@@ -110,19 +105,27 @@ export const GiftCard = ({
       <div className="absolute inset-0 bg-gradient-to-r from-gold/0 via-gold/10 to-gold/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       
       <div className="relative overflow-hidden aspect-square">
-        <img
-          src={imgError ? "/placeholder.svg" : imageUrl}
-          alt={gift.name}
-          className={`w-full h-full object-cover transition-transform duration-300 ${
-            isHovered ? "scale-110" : "scale-100"
-          }`}
-          onError={(e) => {
-            console.error(`Error loading image: ${imageUrl} for gift: ${gift.name}`);
-            setImgError(true);
-            const target = e.target as HTMLImageElement;
-            target.src = '/placeholder.svg'; // Fallback image
-          }}
-        />
+        {!imgError ? (
+          <img
+            src={imageUrl}
+            alt={gift.name}
+            className={`w-full h-full object-cover transition-transform duration-300 ${
+              isHovered ? "scale-110" : "scale-100"
+            }`}
+            onError={(e) => {
+              console.error(`Erro ao carregar imagem: ${imageUrl} para o presente: ${gift.name}`);
+              setImgError(true);
+            }}
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gray-100">
+            <img
+              src="/placeholder.svg"
+              alt="Imagem indisponível"
+              className="w-16 h-16 opacity-50"
+            />
+          </div>
+        )}
         {/* Overlay dourado sutil */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
       </div>
