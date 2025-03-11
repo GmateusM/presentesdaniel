@@ -84,16 +84,13 @@ export const GiftCard = ({
     }
   };
 
-  // Processa a URL da imagem adequadamente
+  // Properly handle image URLs with better error management
   let imageUrl = gift.imageUrl;
   
-  // Verifica se é uma URL externa ou caminho relativo
-  if (!imageUrl.startsWith('http') && !imageUrl.startsWith('/')) {
-    imageUrl = '/' + imageUrl;
-  }
-  
-  // Logs para debugging
-  console.log(`Renderizando presente ID ${gift.id}: ${gift.name} com URL de imagem: ${imageUrl}`);
+  // Better handling for image URLs
+  // We'll treat all URLs as they are without modifying them
+  // This allows both full URLs and relative paths to work correctly
+  console.log(`Processing image for ${gift.name}: ${imageUrl}`);
 
   return (
     <div
@@ -112,18 +109,21 @@ export const GiftCard = ({
             className={`w-full h-full object-cover transition-transform duration-300 ${
               isHovered ? "scale-110" : "scale-100"
             }`}
-            onError={(e) => {
+            onError={() => {
               console.error(`Erro ao carregar imagem: ${imageUrl} para o presente: ${gift.name}`);
               setImgError(true);
             }}
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-gray-100">
-            <img
-              src="/placeholder.svg"
-              alt="Imagem indisponível"
-              className="w-16 h-16 opacity-50"
-            />
+            <div className="flex flex-col items-center justify-center p-4">
+              <img
+                src="/placeholder.svg"
+                alt="Imagem indisponível"
+                className="w-16 h-16 opacity-50 mb-2"
+              />
+              <p className="text-sm text-gray-500 text-center">{gift.name}</p>
+            </div>
           </div>
         )}
         {/* Overlay dourado sutil */}

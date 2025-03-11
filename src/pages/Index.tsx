@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { GiftCard } from "@/components/GiftCard";
 import { AdminPanel } from "@/components/AdminPanel";
@@ -36,10 +35,20 @@ const Index = () => {
       if (savedGifts) {
         const parsedGifts = JSON.parse(savedGifts) as Gift[];
         console.log("Loaded gifts from localStorage:", parsedGifts);
-        setGifts(parsedGifts);
+        
+        // Ensure all gifts have valid image URLs
+        const validatedGifts = parsedGifts.map(gift => ({
+          ...gift,
+          // Make sure imageUrl doesn't have double slashes if it's a relative path
+          imageUrl: gift.imageUrl.startsWith('http') || gift.imageUrl.startsWith('/') 
+            ? gift.imageUrl 
+            : `/${gift.imageUrl}`
+        }));
+        
+        setGifts(validatedGifts);
         
         // Encontrar o maior ID para definir o próximo ID
-        const maxId = Math.max(...parsedGifts.map(gift => gift.id), 0);
+        const maxId = Math.max(...validatedGifts.map(gift => gift.id), 0);
         setNextId(maxId + 1);
       } else {
         console.log("No saved gifts found, using initial gifts");
@@ -87,8 +96,15 @@ const Index = () => {
   };
 
   const handleAddGift = (gift: Omit<Gift, "id">) => {
+    // Prepare the image URL correctly
+    let imageUrl = gift.imageUrl;
+    if (!imageUrl.startsWith('http') && !imageUrl.startsWith('/')) {
+      imageUrl = `/${imageUrl}`;
+    }
+    
     const newGift = {
       ...gift,
+      imageUrl,
       id: nextId
     };
     
