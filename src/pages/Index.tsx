@@ -4,20 +4,21 @@ import { GiftCard } from "@/components/GiftCard";
 import { AdminPanel } from "@/components/AdminPanel";
 import { Gift, GiftReservation } from "@/types/gift";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
-// Lista atualizada de presentes com as 11 imagens enviadas
+// Lista atualizada de presentes com as imagens enviadas pelo usuário
 const initialGifts: Gift[] = [
-  { id: 1, name: "Conjunto de refratários de vidro", imageUrl: "/lovable-uploads/3ce2b63f-df21-418e-912f-c567a7b4aa78.png" },
-  { id: 2, name: "Conjunto de azeiteiro e vinagreiro", imageUrl: "/lovable-uploads/79a54b10-bd69-4c92-a1b5-4027da07fb98.png" },
-  { id: 3, name: "Tábua de corte de bambu", imageUrl: "/lovable-uploads/5a6c50ef-431b-4f42-901b-66d398b0666f.png" },
-  { id: 4, name: "Frigideira antiaderente vermelha", imageUrl: "/lovable-uploads/6ba2dd70-a3ee-400f-a1f4-c95ccc8ebe5a.png" },
-  { id: 5, name: "Assadeira de aço inox", imageUrl: "/lovable-uploads/3ce2b63f-df21-418e-912f-c567a7b4aa78.png" },
-  { id: 6, name: "Moedor de pimenta em madeira", imageUrl: "/lovable-uploads/ff9cce77-a0a3-41b8-8eec-08bfb00c2a18.png" },
-  { id: 7, name: "Conjunto de panelas turquesa (5 peças)", imageUrl: "/lovable-uploads/75451daa-c1e3-45f7-8461-f574ca33783d.png" },
-  { id: 8, name: "Panela de pressão azul", imageUrl: "/lovable-uploads/9e663e06-9479-4740-9f5d-29a5c582bfcc.png" },
-  { id: 9, name: "Liquidificador azul", imageUrl: "/lovable-uploads/177a8b25-4f79-493b-a275-94d0f2da0934.png" },
-  { id: 10, name: "Tábua de passar roupa", imageUrl: "/lovable-uploads/5059c10b-fad9-4c46-af3a-b64f3f0cc978.png" },
-  { id: 11, name: "Escada doméstica (5 degraus)", imageUrl: "/lovable-uploads/ea8717bf-6598-418a-bd50-25c10f2b6157.png" }
+  { id: 1, name: "Conjunto de refratários de vidro", imageUrl: "/lovable-uploads/fccd91e4-2a16-4c9f-be73-a025a1503563.png" },
+  { id: 2, name: "Conjunto de azeiteiro e vinagreiro", imageUrl: "/lovable-uploads/1bf77254-dda3-4090-95d4-7df69d04acbe.png" },
+  { id: 3, name: "Tábua de corte de bambu", imageUrl: "/lovable-uploads/65337925-ac5d-41c8-86cb-7a64bc98fce3.png" },
+  { id: 4, name: "Frigideira antiaderente vermelha", imageUrl: "/lovable-uploads/93bcd672-7d32-4f78-873e-77e8dcc4400f.png" },
+  { id: 5, name: "Assadeira de aço inox", imageUrl: "/lovable-uploads/4e413534-13ad-43d1-a1b1-2e70b36d3861.png" },
+  { id: 6, name: "Moedor de pimenta em madeira", imageUrl: "/lovable-uploads/70d24cc3-3b5c-408d-81e2-0f482b5d9314.png" },
+  { id: 7, name: "Conjunto de panelas turquesa (5 peças)", imageUrl: "/lovable-uploads/429ae40c-5ef0-405c-8a03-11e17efe3987.png" },
+  { id: 8, name: "Panela de pressão azul", imageUrl: "/lovable-uploads/7983e0fd-0b43-45a1-b237-4211ec613d56.png" },
+  { id: 9, name: "Liquidificador azul", imageUrl: "/lovable-uploads/4bc753fd-e798-462b-8d8b-2d03bb8cc31e.png" },
+  { id: 10, name: "Tábua de passar roupa", imageUrl: "/lovable-uploads/da98d2d7-d725-4564-8f82-e5646e7d9d16.png" },
+  { id: 11, name: "Escada doméstica (5 degraus)", imageUrl: "/lovable-uploads/da98d2d7-d725-4564-8f82-e5646e7d9d16.png" }
 ];
 
 const Index = () => {
@@ -26,21 +27,20 @@ const Index = () => {
   const [showAdmin, setShowAdmin] = useState(false);
   const [nextId, setNextId] = useState(12); // Próximo ID após o último item (11)
   const [loading, setLoading] = useState(true);
+  const { toast } = useToast(); // Importar o toast corretamente
 
   // Resetar o localStorage para garantir que os dados iniciais sejam carregados
   useEffect(() => {
     const resetStorage = () => {
-      // Verificar se já existe um registro no localStorage
-      const savedGifts = localStorage.getItem("gifts");
+      // Limpar completamente o localStorage primeiro para evitar problemas
+      localStorage.removeItem("gifts");
       
-      // Se não existir ou se tiver problemas, redefinir
-      if (!savedGifts || JSON.parse(savedGifts).length === 0) {
-        console.log("Resetando lista de presentes para os valores iniciais");
-        localStorage.setItem("gifts", JSON.stringify(initialGifts));
-        setGifts(initialGifts);
-      }
+      console.log("Resetando lista de presentes para os valores iniciais");
+      localStorage.setItem("gifts", JSON.stringify(initialGifts));
+      setGifts(initialGifts);
     };
     
+    // Descomente a linha abaixo para forçar reset do localStorage sempre
     resetStorage();
   }, []);
 
@@ -179,6 +179,15 @@ const Index = () => {
       </header>
 
       <main className="container py-12">
+        <div className="mb-6 text-center">
+          <Button 
+            onClick={handleResetGifts}
+            className="bg-gold hover:bg-gold-dark text-gray-900 font-medium"
+          >
+            Redefinir Lista de Presentes
+          </Button>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {gifts.length > 0 ? (
             gifts.map((gift) => (

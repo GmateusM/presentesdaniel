@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -83,10 +84,8 @@ export const GiftCard = ({
     }
   };
 
-  // Garantir que imageUrl seja sempre uma URL válida
+  // Garantir que imageUrl seja sempre uma URL válida e log de depuração
   let imageUrl = gift.imageUrl;
-  
-  // Mostrar log para debug
   console.log(`Exibindo presente: ${gift.name}, URL da imagem: ${imageUrl}`);
 
   return (
