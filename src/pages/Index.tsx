@@ -1,10 +1,11 @@
+
 import { useState, useEffect } from "react";
 import { GiftCard } from "@/components/GiftCard";
 import { AdminPanel } from "@/components/AdminPanel";
 import { Gift, GiftReservation } from "@/types/gift";
 import { Button } from "@/components/ui/button";
 
-// Lista atualizada de presentes com imagens corrigidas
+// Lista atualizada de presentes com as 11 imagens enviadas
 const initialGifts: Gift[] = [
   { id: 1, name: "Conjunto de refratários de vidro", imageUrl: "/lovable-uploads/3ce2b63f-df21-418e-912f-c567a7b4aa78.png" },
   { id: 2, name: "Conjunto de azeiteiro e vinagreiro", imageUrl: "/lovable-uploads/79a54b10-bd69-4c92-a1b5-4027da07fb98.png" },
@@ -26,6 +27,23 @@ const Index = () => {
   const [nextId, setNextId] = useState(12); // Próximo ID após o último item (11)
   const [loading, setLoading] = useState(true);
 
+  // Resetar o localStorage para garantir que os dados iniciais sejam carregados
+  useEffect(() => {
+    const resetStorage = () => {
+      // Verificar se já existe um registro no localStorage
+      const savedGifts = localStorage.getItem("gifts");
+      
+      // Se não existir ou se tiver problemas, redefinir
+      if (!savedGifts || JSON.parse(savedGifts).length === 0) {
+        console.log("Resetando lista de presentes para os valores iniciais");
+        localStorage.setItem("gifts", JSON.stringify(initialGifts));
+        setGifts(initialGifts);
+      }
+    };
+    
+    resetStorage();
+  }, []);
+
   // Carregar presentes e reservas do localStorage
   useEffect(() => {
     try {
@@ -36,13 +54,11 @@ const Index = () => {
         const parsedGifts = JSON.parse(savedGifts) as Gift[];
         console.log("Loaded gifts from localStorage:", parsedGifts);
         
-        // Ensure all gifts have valid image URLs
+        // Garantir que todos os presentes tenham URLs de imagens válidas
         const validatedGifts = parsedGifts.map(gift => ({
           ...gift,
-          // Make sure imageUrl doesn't have double slashes if it's a relative path
-          imageUrl: gift.imageUrl.startsWith('http') || gift.imageUrl.startsWith('/') 
-            ? gift.imageUrl 
-            : `/${gift.imageUrl}`
+          // Verificar o formato da URL da imagem
+          imageUrl: gift.imageUrl
         }));
         
         setGifts(validatedGifts);
@@ -64,12 +80,14 @@ const Index = () => {
       console.error("Error loading data from localStorage:", error);
       // Em caso de erro, usar a lista inicial
       setGifts(initialGifts);
+      // E salvar a lista inicial no localStorage
+      localStorage.setItem("gifts", JSON.stringify(initialGifts));
     } finally {
       setLoading(false);
     }
   }, []);
 
-  // Console log to check the loaded gifts
+  // Console log para verificar os presentes carregados
   useEffect(() => {
     console.log("Gifts after loading:", gifts);
   }, [gifts]);
@@ -96,11 +114,8 @@ const Index = () => {
   };
 
   const handleAddGift = (gift: Omit<Gift, "id">) => {
-    // Prepare the image URL correctly
+    // Garantir que a URL da imagem está correta
     let imageUrl = gift.imageUrl;
-    if (!imageUrl.startsWith('http') && !imageUrl.startsWith('/')) {
-      imageUrl = `/${imageUrl}`;
-    }
     
     const newGift = {
       ...gift,
@@ -123,6 +138,18 @@ const Index = () => {
     
     // Salvar imediatamente no localStorage
     localStorage.setItem("gifts", JSON.stringify(updatedGifts));
+  };
+
+  // Botão para limpar o localStorage completamente e restaurar os valores iniciais
+  const handleResetGifts = () => {
+    if (confirm("Isso irá redefinir a lista de presentes para os valores iniciais. Deseja continuar?")) {
+      localStorage.setItem("gifts", JSON.stringify(initialGifts));
+      setGifts(initialGifts);
+      toast({
+        title: "Lista de Presentes Redefinida",
+        description: "A lista foi redefinida para os valores iniciais.",
+      });
+    }
   };
 
   if (loading) {
