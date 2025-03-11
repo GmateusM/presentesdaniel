@@ -140,18 +140,6 @@ const Index = () => {
     localStorage.setItem("gifts", JSON.stringify(updatedGifts));
   };
 
-  // Botão para limpar o localStorage completamente e restaurar os valores iniciais
-  const handleResetGifts = () => {
-    if (confirm("Isso irá redefinir a lista de presentes para os valores iniciais. Deseja continuar?")) {
-      localStorage.setItem("gifts", JSON.stringify(initialGifts));
-      setGifts(initialGifts);
-      toast({
-        title: "Lista de Presentes Redefinida",
-        description: "A lista foi redefinida para os valores iniciais.",
-      });
-    }
-  };
-
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -179,15 +167,6 @@ const Index = () => {
       </header>
 
       <main className="container py-12">
-        <div className="mb-6 text-center">
-          <Button 
-            onClick={handleResetGifts}
-            className="bg-gold hover:bg-gold-dark text-gray-900 font-medium"
-          >
-            Redefinir Lista de Presentes
-          </Button>
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {gifts.length > 0 ? (
             gifts.map((gift) => (
