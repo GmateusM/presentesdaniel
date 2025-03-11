@@ -13,11 +13,11 @@ const initialGifts: Gift[] = [
   { id: 3, name: "Tábua de corte de bambu", imageUrl: "/lovable-uploads/65337925-ac5d-41c8-86cb-7a64bc98fce3.png" },
   { id: 4, name: "Frigideira antiaderente vermelha", imageUrl: "/lovable-uploads/93bcd672-7d32-4f78-873e-77e8dcc4400f.png" },
   { id: 5, name: "Assadeira de aço inox", imageUrl: "/lovable-uploads/4e413534-13ad-43d1-a1b1-2e70b36d3861.png" },
-  { id: 6, name: "Moedor de pimenta em madeira", imageUrl: "/lovable-uploads/70d24cc3-3b5c-408d-81e2-0f482b5d9314.png" },
-  { id: 7, name: "Conjunto de panelas turquesa (5 peças)", imageUrl: "/lovable-uploads/429ae40c-5ef0-405c-8a03-11e17efe3987.png" },
-  { id: 8, name: "Panela de pressão azul", imageUrl: "/lovable-uploads/7983e0fd-0b43-45a1-b237-4211ec613d56.png" },
-  { id: 9, name: "Liquidificador azul", imageUrl: "/lovable-uploads/4bc753fd-e798-462b-8d8b-2d03bb8cc31e.png" },
-  { id: 10, name: "Tábua de passar roupa", imageUrl: "/lovable-uploads/da98d2d7-d725-4564-8f82-e5646e7d9d16.png" },
+  { id: 6, name: "Moedor de pimenta em madeira", imageUrl: "/lovable-uploads/4e413534-13ad-43d1-a1b1-2e70b36d3861.png" },
+  { id: 7, name: "Conjunto de panelas turquesa (5 peças)", imageUrl: "/lovable-uploads/70d24cc3-3b5c-408d-81e2-0f482b5d9314.png" },
+  { id: 8, name: "Panela de pressão azul", imageUrl: "/lovable-uploads/429ae40c-5ef0-405c-8a03-11e17efe3987.png" },
+  { id: 9, name: "Liquidificador azul", imageUrl: "/lovable-uploads/7983e0fd-0b43-45a1-b237-4211ec613d56.png" },
+  { id: 10, name: "Tábua de passar roupa", imageUrl: "/lovable-uploads/4bc753fd-e798-462b-8d8b-2d03bb8cc31e.png" },
   { id: 11, name: "Escada doméstica (5 degraus)", imageUrl: "/lovable-uploads/da98d2d7-d725-4564-8f82-e5646e7d9d16.png" }
 ];
 
