@@ -5,7 +5,7 @@ import emailjs from 'emailjs-com';
 const SERVICE_ID = "service_sw2qy8f";
 const TEMPLATE_ID = "template_2uupoje";
 const USER_ID = "qK7k9JDRJuybvP9pW";
-const ADMIN_EMAIL = "gmateusm2020@gmail.com";
+const ADMIN_EMAIL = "vida110718@gmail.com";
 
 interface EmailParams {
   toName: string;
