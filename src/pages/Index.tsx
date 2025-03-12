@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { GiftCard } from "@/components/GiftCard";
 import { AdminPanel } from "@/components/AdminPanel";
@@ -6,7 +5,6 @@ import { Gift, GiftReservation } from "@/types/gift";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
-// Lista atualizada de presentes com as imagens enviadas pelo usuário
 const initialGifts: Gift[] = [
   { id: 1, name: "Conjunto de refratários de vidro", imageUrl: "/lovable-uploads/fccd91e4-2a16-4c9f-be73-a025a1503563.png" },
   { id: 2, name: "Conjunto de azeiteiro e vinagreiro", imageUrl: "/lovable-uploads/1bf77254-dda3-4090-95d4-7df69d04acbe.png" },
@@ -25,26 +23,20 @@ const Index = () => {
   const [gifts, setGifts] = useState<Gift[]>([]);
   const [reservations, setReservations] = useState<GiftReservation>({});
   const [showAdmin, setShowAdmin] = useState(false);
-  const [nextId, setNextId] = useState(12); // Próximo ID após o último item (11)
+  const [nextId, setNextId] = useState(12);
   const [loading, setLoading] = useState(true);
-  const { toast } = useToast(); // Importar o toast corretamente
+  const { toast } = useToast();
 
-  // Resetar o localStorage para garantir que os dados iniciais sejam carregados
   useEffect(() => {
     const resetStorage = () => {
-      // Limpar completamente o localStorage primeiro para evitar problemas
       localStorage.removeItem("gifts");
-      
       console.log("Resetando lista de presentes para os valores iniciais");
       localStorage.setItem("gifts", JSON.stringify(initialGifts));
       setGifts(initialGifts);
     };
-    
-    // Descomente a linha abaixo para forçar reset do localStorage sempre
     resetStorage();
   }, []);
 
-  // Carregar presentes e reservas do localStorage
   useEffect(() => {
     try {
       const savedGifts = localStorage.getItem("gifts");
@@ -53,23 +45,16 @@ const Index = () => {
       if (savedGifts) {
         const parsedGifts = JSON.parse(savedGifts) as Gift[];
         console.log("Loaded gifts from localStorage:", parsedGifts);
-        
-        // Garantir que todos os presentes tenham URLs de imagens válidas
         const validatedGifts = parsedGifts.map(gift => ({
           ...gift,
-          // Verificar o formato da URL da imagem
           imageUrl: gift.imageUrl
         }));
-        
         setGifts(validatedGifts);
-        
-        // Encontrar o maior ID para definir o próximo ID
         const maxId = Math.max(...validatedGifts.map(gift => gift.id), 0);
         setNextId(maxId + 1);
       } else {
         console.log("No saved gifts found, using initial gifts");
         setGifts(initialGifts);
-        // Salvar os presentes iniciais no localStorage
         localStorage.setItem("gifts", JSON.stringify(initialGifts));
       }
       
@@ -78,21 +63,17 @@ const Index = () => {
       }
     } catch (error) {
       console.error("Error loading data from localStorage:", error);
-      // Em caso de erro, usar a lista inicial
       setGifts(initialGifts);
-      // E salvar a lista inicial no localStorage
       localStorage.setItem("gifts", JSON.stringify(initialGifts));
     } finally {
       setLoading(false);
     }
   }, []);
 
-  // Console log para verificar os presentes carregados
   useEffect(() => {
     console.log("Gifts after loading:", gifts);
   }, [gifts]);
 
-  // Salvar presentes no localStorage sempre que mudar
   useEffect(() => {
     if (gifts.length > 0) {
       localStorage.setItem("gifts", JSON.stringify(gifts));
@@ -114,7 +95,6 @@ const Index = () => {
   };
 
   const handleAddGift = (gift: Omit<Gift, "id">) => {
-    // Garantir que a URL da imagem está correta
     let imageUrl = gift.imageUrl;
     
     const newGift = {
@@ -127,16 +107,12 @@ const Index = () => {
     const updatedGifts = [...gifts, newGift];
     setGifts(updatedGifts);
     setNextId(nextId + 1);
-    
-    // Salvar imediatamente no localStorage
     localStorage.setItem("gifts", JSON.stringify(updatedGifts));
   };
 
   const handleRemoveGift = (giftId: number) => {
     const updatedGifts = gifts.filter(gift => gift.id !== giftId);
     setGifts(updatedGifts);
-    
-    // Salvar imediatamente no localStorage
     localStorage.setItem("gifts", JSON.stringify(updatedGifts));
   };
 
@@ -167,7 +143,11 @@ const Index = () => {
       </header>
 
       <main className="container py-12">
-        <p className="text-center text-gray-500 italic mb-8">Imagens meramente ilustrativas.</p>
+        <div className="w-full max-w-4xl mx-auto mb-10 relative overflow-hidden">
+          <p className="text-center text-gray-700 italic py-3 px-6 bg-gradient-to-r from-gold/10 to-navy/10 rounded-md border border-gold/20 shadow-sm font-playfair">
+            Imagens meramente ilustrativas.
+          </p>
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {gifts.length > 0 ? (
