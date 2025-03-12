@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { GiftCard } from "@/components/GiftCard";
 import { AdminPanel } from "@/components/AdminPanel";
@@ -144,7 +145,7 @@ const Index = () => {
 
       <main className="container py-12">
         <div className="w-full max-w-4xl mx-auto mb-10 relative overflow-hidden">
-          <p className="text-center text-gray-700 italic py-3 px-6 bg-gradient-to-r from-gold/10 to-navy/10 rounded-md border border-gold/20 shadow-sm font-playfair">
+          <p className="text-center text-white italic py-3 px-6 bg-black rounded-md font-playfair">
             Imagens meramente ilustrativas.
           </p>
         </div>
