@@ -145,7 +145,7 @@ const Index = () => {
 
       <main className="container py-12">
         <div className="w-full max-w-4xl mx-auto mb-10 relative overflow-hidden">
-          <p className="text-center text-white italic py-3 px-6 bg-black rounded-md font-playfair">
+          <p className="text-center text-black italic py-3 px-6 bg-white rounded-md border-2 border-black font-playfair">
             Imagens meramente ilustrativas.
           </p>
         </div>
