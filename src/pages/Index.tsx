@@ -17,7 +17,13 @@ const initialGifts: Gift[] = [
   { id: 8, name: "Panela de pressão", imageUrl: "/lovable-uploads/429ae40c-5ef0-405c-8a03-11e17efe3987.png" },
   { id: 9, name: "Liquidificador", imageUrl: "/lovable-uploads/7983e0fd-0b43-45a1-b237-4211ec613d56.png" },
   { id: 10, name: "Tábua de passar roupa", imageUrl: "/lovable-uploads/4bc753fd-e798-462b-8d8b-2d03bb8cc31e.png" },
-  { id: 11, name: "Escada doméstica (5 degraus)", imageUrl: "/lovable-uploads/da98d2d7-d725-4564-8f82-e5646e7d9d16.png" }
+  { id: 11, name: "Escada doméstica (5 degraus)", imageUrl: "/lovable-uploads/da98d2d7-d725-4564-8f82-e5646e7d9d16.png" },
+  { id: 12, name: "Multiprocessador", imageUrl: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9" },
+  { id: 13, name: "Sanduicheira grill", imageUrl: "https://images.unsplash.com/photo-1721322800607-8c38375eef04" },
+  { id: 14, name: "Jogo de taças para sobremesa", imageUrl: "/lovable-uploads/6d414486-e76e-45bb-aaea-faa4038f5187.png" },
+  { id: 15, name: "Jogo de taças", imageUrl: "/lovable-uploads/79a54b10-bd69-4c92-a1b5-4027da07fb98.png" },
+  { id: 16, name: "Aspirador de pó", imageUrl: "/lovable-uploads/08086239-fa91-4c05-a225-593b708e6660.png" },
+  { id: 17, name: "Ventilador de pé", imageUrl: "/lovable-uploads/ea8717bf-6598-418a-bd50-25c10f2b6157.png" }
 ];
 
 const Index = () => {
