@@ -12,7 +12,6 @@ const initialGifts: Gift[] = [
   { id: 3, name: "Tábua de corte", imageUrl: "/lovable-uploads/65337925-ac5d-41c8-86cb-7a64bc98fce3.png" },
   { id: 4, name: "Frigideira antiaderente", imageUrl: "/lovable-uploads/93bcd672-7d32-4f78-873e-77e8dcc4400f.png" },
   { id: 5, name: "Assadeira de aço inox", imageUrl: "https://a-static.mlcdn.com.br/800x560/assadeira-retangular-inox-48-cm-tramontina/mobly/tr103ac47fxw-39998/5698305eb8d92661a71100a0b8d62a6c.jpg" },
-  { id: 6, name: "Moedor de pimenta", imageUrl: "/lovable-uploads/4e413534-13ad-43d1-a1b1-2e70b36d3861.png" },
   { id: 7, name: "Conjunto de panelas (5 peças)", imageUrl: "/lovable-uploads/70d24cc3-3b5c-408d-81e2-0f482b5d9314.png" },
   { id: 8, name: "Panela de pressão", imageUrl: "/lovable-uploads/429ae40c-5ef0-405c-8a03-11e17efe3987.png" },
   { id: 9, name: "Liquidificador", imageUrl: "/lovable-uploads/7983e0fd-0b43-45a1-b237-4211ec613d56.png" },
