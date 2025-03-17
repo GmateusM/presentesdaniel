@@ -22,7 +22,7 @@ const initialGifts: Gift[] = [
   { id: 13, name: "Sanduicheira grill", imageUrl: "https://th.bing.com/th/id/OIP.y0Zr2Yr1-zfEEXb8GFo89AHaFj?rs=1&pid=ImgDetMain" },
   { id: 14, name: "Jogo de taças para sobremesa", imageUrl: "https://a-static.mlcdn.com.br/800x560/jogo-de-tacas-de-sobremesa-de-vidro-160ml-6-pecas-haus-concept-gelato/magazineluiza/237309900/24513a2ed82332ca77b4e6007605ef4c.jpg" },
   { id: 15, name: "Jogo de taças", imageUrl: "https://a-static.mlcdn.com.br/1500x1500/jogo-de-tacas-de-vidro-240ml-6-pecas-casambiente-diamond-azul-tcvi059/globaleletro/4045p/28e20455a0a8745af5222a35187f8b48.jpg" },
-  { id: 16, name: "Aspirador de pó", imageUrl: "/lovable-uploads/08086239-fa91-4c05-a225-593b708e6660.png" },
+  { id: 16, name: "Aspirador de pó", imageUrl: "https://a-static.mlcdn.com.br/800x560/aspirador-de-po-e-agua-electrolux-1400w-a10n1/magazineluiza/085865400/23ac2911d421162441347374593d895d.jpg" },
   { id: 17, name: "Ventilador de pé", imageUrl: "https://imgs.pontofrio.com.br/55007291/1xg.jpg" }
 ];
 
