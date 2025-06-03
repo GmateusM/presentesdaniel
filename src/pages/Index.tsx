@@ -24,7 +24,7 @@ const initialGifts: Gift[] = [
   { id: 16, name: "Aspirador de pó", imageUrl: "https://a-static.mlcdn.com.br/800x560/aspirador-de-po-e-agua-electrolux-1400w-a10n1/magazineluiza/085865400/23ac2911d421162441347374593d895d.jpg" },
   { id: 17, name: "Ventilador de pé", imageUrl: "https://imgs.pontofrio.com.br/55007291/1xg.jpg" },
   { id: 18, name: "Sapateira", imageUrl: "https://m.media-amazon.com/images/I/51ROHnfm27L.jpg" },
-  { id: 19, name: "Micro-ondas", imageUrl: "https://a-static.mlcdn.com.br/1500x1500/micro-ondas-consul-32-litros-cor-cinza-espelhado-com-menu-facil-cms46ar-127v/comprebel2/57680/9eb65a7c85baff997bcd18ff5b588b79.jpeg" }
+  { id: 19, name: "máquina de lavar roupa 15kg", imageUrl: "blob:https://web.whatsapp.com/2f38f63b-f39d-4c45-b8dc-2cea0df50af2" }
 
 ];
 
