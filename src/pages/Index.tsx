@@ -7,18 +7,17 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 const initialGifts: Gift[] = [
-  { id: 1, name: "Conjunto de refratários de vidro", imageUrl: "/lovable-uploads/fccd91e4-2a16-4c9f-be73-a025a1503563.png" },
-  { id: 2, name: "Frigideira antiaderente", imageUrl: "/lovable-uploads/93bcd672-7d32-4f78-873e-77e8dcc4400f.png" },
-  { id: 3, name: "Conjunto de panelas (5 peças)", imageUrl: "/lovable-uploads/70d24cc3-3b5c-408d-81e2-0f482b5d9314.png" },
-  { id: 4, name: "Panela de pressão", imageUrl: "/lovable-uploads/429ae40c-5ef0-405c-8a03-11e17efe3987.png" },
-  { id: 5, name: "Escada doméstica (5 degraus)", imageUrl: "/lovable-uploads/da98d2d7-d725-4564-8f82-e5646e7d9d16.png" },
-  { id: 6, name: "Multiprocessador", imageUrl: "https://a-static.mlcdn.com.br/800x560/multiprocessador-philco-pmp1600-2-velocidades-pulsar-1400w/lojasbenoit/97707/efea45ea425cc45e916164a4cad8b9e2.jpeg" },
-  { id: 7, name: "Jogo de taças para sobremesa", imageUrl: "https://a-static.mlcdn.com.br/800x560/jogo-de-tacas-de-sobremesa-de-vidro-160ml-6-pecas-haus-concept-gelato/magazineluiza/237309900/24513a2ed82332ca77b4e6007605ef4c.jpg" },
-  { id: 8, name: "Jogo de taças", imageUrl: "https://a-static.mlcdn.com.br/1500x1500/jogo-de-tacas-de-vidro-240ml-6-pecas-casambiente-diamond-azul-tcvi059/globaleletro/4045p/28e20455a0a8745af5222a35187f8b48.jpg" },
-  { id: 9, name: "Aspirador de pó", imageUrl: "https://a-static.mlcdn.com.br/800x560/aspirador-de-po-e-agua-electrolux-1400w-a10n1/magazineluiza/085865400/23ac2911d421162441347374593d895d.jpg" },
-  { id: 10, name: "Ventilador de pé", imageUrl: "https://imgs.pontofrio.com.br/55007291/1xg.jpg" },
-  { id: 11, name: "Sapateira", imageUrl: "https://m.media-amazon.com/images/I/51ROHnfm27L.jpg" },
-  { id: 12, name: "máquina de lavar roupa 15kg", imageUrl: "https://http2.mlstatic.com/D_NQ_NP_2X_941727-MLU77374826535_072024-F.webp" }
+ 
+  { id: 1, name: "Conjunto de panelas (5 peças)", imageUrl: "/lovable-uploads/70d24cc3-3b5c-408d-81e2-0f482b5d9314.png" },
+  { id: 2, name: "Panela de pressão", imageUrl: "/lovable-uploads/429ae40c-5ef0-405c-8a03-11e17efe3987.png" },
+  { id: 3, name: "Escada doméstica (5 degraus)", imageUrl: "/lovable-uploads/da98d2d7-d725-4564-8f82-e5646e7d9d16.png" },
+  { id: 4, name: "Multiprocessador", imageUrl: "https://a-static.mlcdn.com.br/800x560/multiprocessador-philco-pmp1600-2-velocidades-pulsar-1400w/lojasbenoit/97707/efea45ea425cc45e916164a4cad8b9e2.jpeg" },
+  { id: 5, name: "Jogo de taças para sobremesa", imageUrl: "https://a-static.mlcdn.com.br/800x560/jogo-de-tacas-de-sobremesa-de-vidro-160ml-6-pecas-haus-concept-gelato/magazineluiza/237309900/24513a2ed82332ca77b4e6007605ef4c.jpg" },
+  { id: 6, name: "Jogo de taças", imageUrl: "https://a-static.mlcdn.com.br/1500x1500/jogo-de-tacas-de-vidro-240ml-6-pecas-casambiente-diamond-azul-tcvi059/globaleletro/4045p/28e20455a0a8745af5222a35187f8b48.jpg" },
+  { id: 7, name: "Aspirador de pó", imageUrl: "https://a-static.mlcdn.com.br/800x560/aspirador-de-po-e-agua-electrolux-1400w-a10n1/magazineluiza/085865400/23ac2911d421162441347374593d895d.jpg" },
+  { id: 8, name: "Ventilador de pé", imageUrl: "https://imgs.pontofrio.com.br/55007291/1xg.jpg" },
+  { id: 9, name: "Sapateira", imageUrl: "https://m.media-amazon.com/images/I/51ROHnfm27L.jpg" },
+  { id: 10, name: "máquina de lavar roupa 15kg", imageUrl: "https://http2.mlstatic.com/D_NQ_NP_2X_941727-MLU77374826535_072024-F.webp" }
 
 ];
 
